@@ -1,297 +1,1324 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ErhanDigs - Excavator & Alat Berat</title>
-  <style>
-    /* Reset & Base */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; color: #333; overflow-x: hidden; background: #f9f9f9; }
-    a { text-decoration: none; transition: 0.3s; }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RIPPA - Excavator & Alat Berat Terbaik</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-    /* Navbar */
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 50px;
-      background: #fff;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .logo { font-size: 24px; font-weight: bold; color: #0072ff; }
-    nav a { margin: 0 15px; color: #333; font-weight: 500; position: relative; }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -5px; left: 0;
-      width: 0; height: 2px;
-      background: #0072ff;
-      transition: 0.3s;
-    }
-    nav a:hover { color: #0072ff; }
-    nav a:hover::after { width: 100%; }
-    .btn {
-      padding: 10px 18px;
-      border-radius: 8px;
-      background: #0072ff;
-      color: #fff;
-      font-weight: 500;
-      display: inline-block;
-    }
-    .btn:hover { background: #0057c2; transform: scale(1.05); }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
 
-    /* Hero */
-    .hero {
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)),
-                  url('images/excavator.jpg') no-repeat center/cover;
-      height: 90vh;
-      display: flex;
-      align-items: center;
-      color: #fff;
-      padding: 0 50px;
-    }
-    .hero h1 { font-size: 48px; margin-bottom: 15px; }
-    .hero p { max-width: 600px; margin-bottom: 20px; }
-    .hero .btn { margin-right: 10px; }
+      /* Header */
+      .header {
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        padding: 1rem 0;
+      }
 
-    /* Section umum */
-    section { padding: 80px 50px; }
-    .section-title { text-align: center; margin-bottom: 50px; font-size: 32px; color: #222; }
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 2rem;
+      }
 
-    /* Produk */
-    .produk-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      background: #fff;
-      transform: translateY(30px);
-      opacity: 0;
-      transition: 0.6s;
-    }
-    .card.show { transform: translateY(0); opacity: 1; }
-    .card img { width: 100%; height: 200px; object-fit: cover; }
-    .card-body { padding: 20px; }
-    .card-body h3 { margin-bottom: 10px; }
-    .price { font-weight: bold; color: #0072ff; margin-top: 10px; }
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #0d47a1;
+      }
 
-    /* Tentang */
-    #tentang div {
-      max-width: 900px; 
-      margin: auto; 
-      text-align: center; 
-      line-height: 1.8;
-    }
+      .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
 
-    /* Kontak (hanya form) */
-    #kontak { background:#f5f9ff; }
-    .kontak-form {
-      max-width: 600px;
-      margin: auto;
-      background:#fff; 
-      padding:30px; 
-      border-radius:12px; 
-      box-shadow:0 4px 15px rgba(0,0,0,0.08);
-    }
-    .kontak-form input, .kontak-form textarea {
-      width: 100%; 
-      padding: 12px; 
-      margin-bottom: 15px;
-      border: 1px solid #ccc; 
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .kontak-form input:focus, .kontak-form textarea:focus {
-      border-color: #0072ff;
-      outline: none;
-      box-shadow: 0 0 5px rgba(0,114,255,0.3);
-    }
+      .nav-menu a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
 
-    /* Footer */
-    footer {
-      background: #222; 
-      color: #fff; 
-      padding: 50px; 
-      display: flex; 
-      justify-content: space-between; 
-      flex-wrap: wrap; 
-      gap: 30px;
-    }
-    footer h3, footer h4 { margin-bottom: 15px; }
-    footer a {
-      display: block;
-      color: #bbb; 
-      margin: 8px 0;
-    }
-    footer a:hover { color: #0072ff; }
-    .copyright {
-      background:#111; 
-      text-align:center; 
-      padding:15px; 
-      color:#888; 
-      font-size:14px;
-    }
+      .nav-menu a:hover {
+        color: #0d47a1;
+        font-weight: bold;
+      }
 
-    /* Responsif */
-    @media (max-width: 768px) {
-      header { flex-wrap: wrap; justify-content: center; }
-      .hero { padding: 0 20px; text-align: center; }
-      .hero h1 { font-size: 32px; }
-      section { padding: 60px 20px; }
-    }
-  </style>
-</head>
-<body>
+      .contact-info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.9rem;
+        color: #666;
+      }
 
-  <!-- Navbar -->
-  <header>
-    <div class="logo">ErhanDigs</div>
-    <nav>
-      <a href="#beranda">Beranda</a>
-      <a href="#produk">Produk</a>
-      <a href="#tentang">Tentang</a>
-      <a href="#kontak">Kontak</a>
-    </nav>
-    <a href="#kontak" class="btn">Hubungi Kami</a>
-  </header>
+      .btn-contact {
+        background: #0d47a1;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: background 0.3s;
+      }
 
-  <!-- Hero -->
-  <section class="hero" id="beranda">
-    <div>
-      <h1>Excavator & Alat Berat <span style="color:#00a2ff;">Terbaik</span></h1>
-      <p>Solusi lengkap untuk kebutuhan konstruksi Anda. Kami menyediakan excavator dan alat berat berkualitas tinggi dengan layanan terpercaya.</p>
-      <a href="#produk" class="btn">Lihat Produk Kami</a>
-      <a href="#kontak" class="btn" style="background:#444;">Konsultasi Gratis</a>
-    </div>
-  </section>
+      .btn-contact:hover {
+        background: #0d47a1;
+      }
 
-  <!-- Produk -->
-  <section id="produk">
-    <h2 class="section-title">Produk Unggulan</h2>
-    <div class="produk-container">
-      <div class="card">
-        <img src="images/excavator1.jpg" alt="R10 Eco Mini">
-        <div class="card-body">
-          <h3>R10 ECO MINI</h3>
-          <p>Mini excavator kompak dengan motor efisien, cocok untuk berbagai kebutuhan konstruksi.</p>
-          <div class="price">Rp 115.000.000</div>
+      .mobile-menu {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .mobile-menu span {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.5)
+          ),
+          url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23435a6b" width="1200" height="800"/><path fill="%23596975" d="M0 400l50-16.7C100 367 200 333 300 350s200 83 300 66.7c100-16.7 200-83.3 300-66.7S1100 433 1150 450l50 16.7V800H0z"/></svg>');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        color: white;
+        position: relative;
+        padding-top: 80px;
+      }
+
+      .hero-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+        width: 100%;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .hero h1 .highlight {
+        color: #0d47a1;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        max-width: 600px;
+        line-height: 1.6;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .btn-primary {
+        background: #0d47a1;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        background: #0d47a1;
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        padding: 1rem 2rem;
+        border: 2px solid white;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        display: inline-block;
+      }
+
+      .btn-secondary:hover {
+        background: white;
+        color: #333;
+      }
+
+      /* Features Section */
+      .features {
+        padding: 4rem 0;
+        background: #f8f9fa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .feature-icon {
+        width: 60px;
+        height: 60px;
+        background: #0d47a1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        color: white;
+        font-size: 1.5rem;
+      }
+
+      /* Products Section */
+      .products {
+        padding: 4rem 0;
+        background: white;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .section-title h2 .highlight {
+        color: #0d47a1;
+      }
+
+      .section-title p {
+        font-size: 1.1rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .products-grid .product-card:last-child {
+        /* grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 400px; */
+        grid-column: auto;
+        justify-self: auto;
+        max-width: none;
+      }
+
+      .product-card {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .products-grid::after {
+        content: "";
+        width: 100%;
+        max-width: 350px;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
+        border-radius: 8px 8px 0 0;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .product-image::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 200px;
+        height: 120px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .product-tag {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: rgba(0, 86, 179, 0.8);
+        color: #fff;
+        padding: 5px 10px;
+        font-size: 14px;
+        border-radius: 5px;
+      }
+
+      .product-content {
+        padding: 1.5rem;
+      }
+
+      .product-title {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        color: #333;
+      }
+
+      .product-description {
+        color: #666;
+        margin-bottom: 1rem;
+        line-height: 1.5;
+      }
+
+      .product-specs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .spec-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #666;
+      }
+
+      .spec-icon {
+        width: 16px;
+        height: 16px;
+        background: #0d47a1;
+        border-radius: 3px;
+      }
+
+      .product-price {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: #0d47a1;
+        margin-bottom: 1rem;
+      }
+
+      .price-label {
+        font-size: 0.9rem;
+        color: #666;
+        font-weight: normal;
+      }
+
+      .btn-detail {
+        background: #0d47a1;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: 600;
+        width: 100%;
+        text-align: center;
+        display: block;
+        transition: background 0.3s;
+      }
+
+      .btn-detail:hover {
+        background: #0d47a1;
+      }
+
+      /* Contact Section */
+      .contact {
+        padding: 4rem 0;
+        background: #f8f9fa;
+      }
+
+      .contact-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-top: 3rem;
+      }
+
+      .contact-info-section {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-icon {
+        width: 40px;
+        height: 40px;
+        background: #0d47a1;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+      }
+
+      .contact-form {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        color: #333;
+      }
+
+      .form-group input,
+      .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+      }
+
+      .form-group input:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: #0d47a1;
+      }
+
+      .form-group textarea {
+        height: 100px;
+        resize: vertical;
+      }
+
+      .btn-send {
+        background: #0d47a1;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        font-weight: 600;
+        width: 100%;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .btn-send:hover {
+        background: #0d47a1;
+      }
+
+      /* Footer */
+      .footer {
+        background: #0d47a1; /* biru tua */
+        color: #eee;
+        padding: 2rem 0;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+      }
+
+      .footer-section {
+        flex: 1;
+        min-width: 250px;
+      }
+
+      .footer-section h3 {
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: #bdc3c7;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        display: block;
+      }
+
+      .footer-section a:hover {
+        color: white;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .social-link {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background-color: #0d47a1; /* warna lingkaran, bisa diganti */
+        display: flex; /* penting */
+        align-items: center; /* center vertical */
+        justify-content: center; /* center horizontal */
+        font-size: 20px; /* ukuran icon */
+        color: #fff; /* warna icon */
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background-color: #0d47a1;
+        color: #fff;
+      }
+
+      .footer-bottom {
+        border-top: 1px solid #444;
+        margin-top: 2rem;
+        padding-top: 1rem;
+        text-align: center; /* semua isi rata tengah */
+      }
+
+      .footer-bottom p {
+        margin: 0.5rem 0;
+      }
+
+      .footer-links {
+        margin-top: 0.5rem;
+      }
+
+      .footer-links a {
+        margin: 0 1rem;
+        color: #ddd;
+        text-decoration: none;
+      }
+
+      .footer-links a:hover {
+        color: #fff;
+      }
+
+      .footer-section.right p {
+        margin: 0.5rem 0;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .nav-menu {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: flex;
+        }
+
+        .contact-info {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 2.5rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+          width: 100%;
+          text-align: center;
+        }
+
+        .contact-content {
+          grid-template-columns: 1fr;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-links {
+          flex-direction: column;
+          gap: 1rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-container {
+          padding: 0 1rem;
+        }
+
+        .hero-content,
+        .container {
+          padding: 0 1rem;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .section-title h2 {
+          font-size: 2rem;
+        }
+      }
+
+      /* Atur khusus buat produk ke-4 */
+      @media (min-width: 900px) {
+        .products-grid .product-card:nth-child(4) {
+          grid-column: 2; /* duduk manis di kolom tengah */
+        }
+      }
+
+      /* Smooth scrolling */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* Loading animation */
+      .loading {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .loading.show {
+        display: block;
+      }
+
+      .spinner {
+        border: 4px solid #f3f3f3;
+        border-top: 4px solid #0d47a1;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 2s linear infinite;
+        margin: 0 auto;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav-container">
+        <div class="logo">RIPPA</div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#home">Beranda</a></li>
+          <li><a href="#products">Produk</a></li>
+          <li><a href="#about">Tentang</a></li>
+          <li><a href="#contact">Kontak</a></li>
+        </ul>
+
+        <div class="mobile-menu" id="mobileMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1>Excavator & Alat Berat <span class="highlight">Terbaik</span></h1>
+        <p>
+          Solusi lengkap untuk kebutuhan konstruksi Anda. Kami menyediakan
+          excavator dan alat berat berkualitas tinggi dengan layanan terpercaya.
+        </p>
+        <div class="hero-buttons">
+          <a href="#products" class="btn-primary">Lihat Produk Kami</a>
+          <!-- <a href="#contact" class="btn-secondary">Konsultasi Gratis</a> -->
+          <a
+            href="https://wa.me/6282288159186?text=Halo%20saya%20ingin%20konsultasi%20tentang%20produk%20Anda"
+            target="_blank"
+            class="btn-konsultasi btn-secondary"
+          >
+            Konsultasi Gratis
+          </a>
         </div>
       </div>
-      <div class="card">
-        <img src="images/excavator2.jpg" alt="R15 Eco Mini">
-        <div class="card-body">
-          <h3>R15 ECO MINI</h3>
-          <p>Aksesori impor untuk meningkatkan kinerja mesin, tahan lama dan kuat.</p>
-          <div class="price">Rp 225.000.000</div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">⭐</div>
+            <h3>Kualitas Terjamin</h3>
+            <p>Brand ternama dunia</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>Garansi Resmi</h3>
+            <p>Layanan jual</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🚚</div>
+            <h3>Pengiriman Cepat</h3>
+            <p>Ke seluruh Indonesia</p>
+          </div>
         </div>
       </div>
-      <div class="card">
-        <img src="images/excavator3.jpg" alt="R18 Pro Mini">
-        <div class="card-body">
-          <h3>R18 PRO MINI</h3>
-          <p>Kabin luas dan nyaman dengan AC, memberikan kenyamanan kerja sepanjang hari.</p>
-          <div class="price">Rp 336.000.000</div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+      <div class="container">
+        <div class="section-title">
+          <h2>Produk <span class="highlight">Unggulan</span></h2>
+          <p>
+            Koleksi alat berat terbaik dengan teknologi terdepan untuk mendukung
+            proyek konstruksi Anda
+          </p>
+        </div>
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <img src="picture/r10.jpg" alt="R10 ECO MINI" />
+              <div class="product-tag">RIPPA Excavator</div>
+            </div>
+            <div class="product-content">
+              <h3 class="product-title">R10 ECO MINI</h3>
+              <p class="product-description">
+                Mini excavator kompak dengan motor penjelahan meningkatkan
+                desain tertutup untuk memadamkan motor dan berbeda dari
+                memperpanjang masa pakai nya.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>1000/2295 kg</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>0.014/0.49 m³</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>3253/127.3 mm</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>Kubota</span>
+                </div>
+              </div>
+              <div class="product-price">Rp 115.000.000</div>
+              <a href="#" class="btn-detail">Detail</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="picture/r15.jpg" alt="R15 ECO MINI" />
+              <div class="product-tag">RIPPA Excavator</div>
+            </div>
+            <div class="product-content">
+              <h3 class="product-title">R15 ECO MINI</h3>
+              <p class="product-description">
+                Aksesoris impor untuk meningkatkan kinerja keseluruhan mesin.
+                Silinder ditempa dalam satu tahap, tidak mudah pecah, dan
+                dilengkapi dengan cincin penjelasan NOK Taiwan.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>1500/3307 kg</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>0.03/1.1 m³</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>3274/128.9 mm</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>Kubota</span>
+                </div>
+              </div>
+              <div class="product-price">Rp 225.000.000</div>
+              <a href="#" class="btn-detail">Detail</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="picture/r18.jpg" alt="R18 PRO MINI" />
+              <div class="product-tag">RIPPA Excavator</div>
+            </div>
+            <div class="product-content">
+              <h3 class="product-title">R18 PRO MINI</h3>
+              <p class="product-description">
+                Kabin yang luas dan sejlosa dengan penghawa dingin, memberikan
+                perasaan kerja yang selesa untuk kerja sepanjang hari.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>1814/4000 kg</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>0.045/1.6 m³</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>3975/156.5 mm</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>Kubota</span>
+                </div>
+              </div>
+              <div class="product-price">Rp 336.000.000</div>
+              <a href="#" class="btn-detail">Detail</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <img src="picture/r22.jpg" alt="R22 PRO MINI" />
+              <div class="product-tag">RIPPA Excavator</div>
+            </div>
+            <div class="product-content">
+              <h3 class="product-title">R22 PRO MINI</h3>
+              <p class="product-description">
+                Kabin yang luas dan sellosa dengan penghawa dingin, menyediakan
+                perasaan kerja yang selesa untuk anda sepanjang hari.
+              </p>
+              <div class="product-specs">
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>2371.5/5228 kg</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>0.054/1.9 m³</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>4143/163.1 mm</span>
+                </div>
+                <div class="spec-item">
+                  <div class="spec-icon"></div>
+                  <span>Kubota</span>
+                </div>
+              </div>
+              <div class="product-price">Rp 392.000.000</div>
+              <a href="#" class="btn-detail">Detail</a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Tentang -->
-  <section id="tentang">
-    <h2 class="section-title">Tentang Kami</h2>
-    <div>
-      <p>
-        <b>ErhanDigs</b> adalah penyedia solusi excavator dan alat berat yang 
-        berdedikasi untuk mendukung proyek konstruksi di seluruh Indonesia. 
-        Kami mengutamakan <span style="color:#0072ff;">kualitas</span>, 
-        <span style="color:#0072ff;">layanan</span>, dan 
-        <span style="color:#0072ff;">kepercayaan</span> dalam setiap produk yang kami tawarkan.
-      </p>
-      <p style="margin-top: 20px;">
-        Dengan pengalaman lebih dari 10 tahun, tim kami siap membantu Anda memilih 
-        alat berat yang sesuai dengan kebutuhan, mulai dari proyek kecil hingga industri besar.
-      </p>
-      <!-- <div style="margin-top:30px;">
-        <a href="#kontak" class="btn">Hubungi Kami</a>
-      </div> -->
-    </div>
-  </section>
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="section-title">
+          <h2>Tentang <span class="highlight">Kami</span></h2>
+          <p>
+            Kami adalah penyedia excavator & alat berat terpercaya di Indonesia.
+            Dengan pengalaman bertahun-tahun, kami berkomitmen memberikan solusi
+            terbaik untuk proyek konstruksi Anda.
+          </p>
+        </div>
+      </div>
+    </section>
 
-  <!-- Kontak (Form Only) -->
-  <section id="kontak">
-    <h2 class="section-title">Hubungi Kami</h2>
-    <div class="kontak-form">
-      <input type="text" placeholder="Nama Lengkap">
-      <input type="email" placeholder="Email">
-      <input type="text" placeholder="Telepon">
-      <textarea rows="5" placeholder="Pesan Anda"></textarea>
-      <button class="btn">Kirim Sekarang</button>
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="section-title">
+          <h2>Hubungi <span class="highlight">Kami</span></h2>
+          <p>Kirim pesan kepada kami, tim kami siap membantu Anda.</p>
+        </div>
+        <div class="contact-form" style="max-width: 600px; margin: 0 auto">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="nama">Nama</label>
+              <input
+                type="text"
+                id="nama"
+                name="nama"
+                placeholder="Nama lengkap Anda"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Alamat email Anda"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="pesan">Pesan</label>
+              <textarea
+                id="pesan"
+                name="pesan"
+                placeholder="Tuliskan pesan Anda..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="btn-send">Kirim Pesan</button>
+          </form>
+        </div>
+      </div>
+    </section>
 
-  <!-- Footer -->
-  <footer>
-    <div>
-      <h3>ErhanDigs</h3>
-      <p>Partner terpercaya untuk solusi alat berat dan excavator berkualitas tinggi.</p>
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <!-- Kiri: brand + sosmed -->
+          <div class="footer-section left">
+            <h3>RIPPA</h3>
+            <p>
+              Partner terpercaya untuk solusi alat berat dan excavator
+              berkualitas tinggi.
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-link" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Kanan: kontak -->
+          <div class="footer-section right">
+            <h3>Kontak</h3>
+            <p><i class="fas fa-phone-alt"></i> +62 812-3456-7890</p>
+            <p><i class="fas fa-envelope"></i> develon@rippa.com</p>
+            <p>
+              <i class="fas fa-map-marker-alt"></i> Jl. SM Amin No. 123,
+              Pekanbaru 13260
+            </p>
+          </div>
+        </div>
+
+        <!-- Footer bottom -->
+        <div class="footer-bottom">
+          <p>&copy; 2024 RIPPA. Semua hak dilindungi.</p>
+          <div class="footer-links">
+            <a href="#">Kebijakan Privasi</a>
+            <a href="#">Syarat & Ketentuan</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Loading Indicator -->
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Mengirim pesan...</p>
     </div>
 
-    <div>
-      <h4>Navigasi</h4>
-      <a href="#beranda">Beranda</a>
-      <a href="#produk">Produk</a>
-      <a href="#tentang">Tentang</a>
-      <a href="#kontak">Kontak</a>
-    </div>
+    <script>
+      // Mobile Menu Toggle
+      const mobileMenu = document.getElementById("mobileMenu");
+      const navMenu = document.getElementById("navMenu");
 
-    <div>
-      <h4>Info Kontak</h4>
-      <p>📞 +62 812-3456-7890</p>
-      <p>✉️ info@erhandigs.com</p>
-      <p>📍 Jl. Industri Raya No.123, Jakarta Timur</p>
-    </div>
+      mobileMenu.addEventListener("click", function () {
+        navMenu.style.display =
+          navMenu.style.display === "flex" ? "none" : "flex";
+        navMenu.style.position = "absolute";
+        navMenu.style.top = "100%";
+        navMenu.style.left = "0";
+        navMenu.style.right = "0";
+        navMenu.style.backgroundColor = "white";
+        navMenu.style.flexDirection = "column";
+        navMenu.style.padding = "1rem";
+        navMenu.style.boxShadow = "0 5px 15px rgba(0,0,0,0.1)";
+      });
 
-    <div>
-      <h4>Ikuti Kami</h4>
-      <a href="#">Facebook</a>
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-    </div>
-  </footer>
-  <div class="copyright">
-    © 2025 ErhanDigs. Semua Hak Dilindungi.
-  </div>
-
-  <script>
-    // Scroll halus
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+      // Smooth Scrolling for Navigation Links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
         });
       });
-    });
 
-    // Animasi muncul produk saat scroll
-    const cards = document.querySelectorAll('.card');
-    window.addEventListener('scroll', () => {
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 100){
-          card.classList.add('show');
+      // Header Background on Scroll
+      window.addEventListener("scroll", function () {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 100) {
+          header.style.backgroundColor = "rgba(255, 255, 255, 0.95)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.backgroundColor = "#fff";
+          header.style.backdropFilter = "none";
         }
       });
-    });
-  </script>
 
-</body>
+      // Form Submission
+      const contactForm = document.getElementById("contactForm");
+      const loading = document.getElementById("loading");
+
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        // Show loading
+        loading.classList.add("show");
+
+        // Get form data
+        const formData = new FormData(contactForm);
+        const data = Object.fromEntries(formData);
+
+        // Simulate form submission
+        setTimeout(() => {
+          loading.classList.remove("show");
+          alert(
+            "Terima kasih! Pesan Anda telah dikirim. Tim kami akan menghubungi Anda segera."
+          );
+          contactForm.reset();
+        }, 2000);
+      });
+
+      // Product Cards Animation on Scroll
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.transform = "translateY(0)";
+            entry.target.style.opacity = "1";
+          }
+        });
+      }, observerOptions);
+
+      // Observe all product cards
+      document
+        .querySelectorAll(".product-card, .feature-card")
+        .forEach((card) => {
+          card.style.transform = "translateY(30px)";
+          card.style.opacity = "0";
+          card.style.transition = "all 0.6s ease";
+          observer.observe(card);
+        });
+
+      // Add hover effect to buttons
+      document
+        .querySelectorAll(
+          ".btn-primary, .btn-secondary, .btn-detail, .btn-send"
+        )
+        .forEach((button) => {
+          button.addEventListener("mouseenter", function () {
+            this.style.transform = "translateY(-2px)";
+          });
+
+          button.addEventListener("mouseleave", function () {
+            this.style.transform = "translateY(0)";
+          });
+        });
+
+      // Dynamic pricing (simulate real-time updates)
+      function updatePricing() {
+        const prices = document.querySelectorAll(".product-price");
+        prices.forEach((price) => {
+          const originalPrice = price.textContent;
+          price.style.transition = "all 0.3s ease";
+        });
+      }
+
+      // Counter animation for specs
+      function animateCounters() {
+        const counters = document.querySelectorAll(".spec-item span");
+        counters.forEach((counter) => {
+          const text = counter.textContent;
+          if (
+            text.includes("kg") ||
+            text.includes("m³") ||
+            text.includes("mm")
+          ) {
+            counter.style.fontWeight = "bold";
+            counter.style.color = "#0d47a1";
+          }
+        });
+      }
+
+      // Initialize animations
+      document.addEventListener("DOMContentLoaded", function () {
+        updatePricing();
+        animateCounters();
+
+        // Add loading animation to page
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          document.body.style.transition = "opacity 0.5s ease";
+          document.body.style.opacity = "1";
+        }, 100);
+      });
+
+      // WhatsApp Integration (optional)
+      function openWhatsApp(message = "") {
+        const phone = "6282288159186"; // Replace with actual phone number
+        const defaultMessage =
+          message ||
+          "Halo, saya tertarik dengan produk excavator Anda. Mohon informasi lebih lanjut.";
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(
+          defaultMessage
+        )}`;
+        window.open(url, "_blank");
+      }
+
+      // Add WhatsApp buttons to product cards
+      document.querySelectorAll(".btn-detail").forEach((button, index) => {
+        const productTitle = button
+          .closest(".product-card")
+          .querySelector(".product-title").textContent;
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          openWhatsApp(
+            `Saya tertarik dengan produk ${productTitle}. Mohon informasi detail dan harga terbaru.`
+          );
+        });
+      });
+
+      // Image lazy loading simulation
+      function lazyLoadImages() {
+        const images = document.querySelectorAll(".product-image");
+        images.forEach((img, index) => {
+          img.style.backgroundImage = `linear-gradient(45deg, ${getRandomColor()}, ${getRandomColor()})`;
+          img.addEventListener("mouseover", function () {
+            this.style.transform = "scale(1.05)";
+            this.style.transition = "transform 0.3s ease";
+          });
+          img.addEventListener("mouseout", function () {
+            this.style.transform = "scale(1)";
+          });
+        });
+      }
+
+      function getRandomColor() {
+        const colors = [
+          "#f39c12",
+          "#e67e22",
+          "#e74c3c",
+          "#9b59b6",
+          "#3498db",
+          "#1abc9c",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      // Initialize lazy loading
+      setTimeout(lazyLoadImages, 500);
+
+      // Search functionality (for future enhancement)
+      function initializeSearch() {
+        const searchInput = document.createElement("input");
+        searchInput.type = "text";
+        searchInput.placeholder = "Cari produk...";
+        searchInput.style.display = "none"; // Hidden for now
+      }
+
+      // Newsletter subscription (for future enhancement)
+      function initializeNewsletter() {
+        // Newsletter subscription logic would go here
+        console.log("Newsletter feature ready for implementation");
+      }
+
+      // Initialize all features
+      window.addEventListener("load", function () {
+        initializeSearch();
+        initializeNewsletter();
+
+        // Performance optimization
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("/sw.js").catch(() => {
+            console.log("Service Worker not available");
+          });
+        }
+      });
+
+      // Scroll to top functionality
+      const scrollToTop = document.createElement("button");
+      scrollToTop.innerHTML = "↑";
+      scrollToTop.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #0d47a1;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        `;
+
+      document.body.appendChild(scrollToTop);
+
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > 300) {
+          scrollToTop.style.opacity = "1";
+        } else {
+          scrollToTop.style.opacity = "0";
+        }
+      });
+
+      scrollToTop.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      });
+
+      // Product comparison feature (basic)
+      let selectedProducts = [];
+
+      function addToComparison(productId) {
+        if (
+          selectedProducts.length < 3 &&
+          !selectedProducts.includes(productId)
+        ) {
+          selectedProducts.push(productId);
+          updateComparisonUI();
+        }
+      }
+
+      function updateComparisonUI() {
+        // Update comparison UI (implementation would depend on design requirements)
+        console.log("Products selected for comparison:", selectedProducts);
+      }
+
+      // Initialize tooltips for specifications
+      document.querySelectorAll(".spec-item").forEach((item) => {
+        item.title = "Klik untuk detail spesifikasi";
+        item.style.cursor = "help";
+      });
+    </script>
+  </body>
 </html>

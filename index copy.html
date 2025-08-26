@@ -109,8 +109,8 @@
             rgba(5, 5, 5, 0.8),
             rgba(0, 0, 0, 0.8)
           ),
-          url("picture/r18.jpg");
-        /*url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23435a6b" width="1200" height="800"/><path fill="%23596975" d="M0 400l50-16.7C100 367 200 333 300 350s200 83 300 66.7c100-16.7 200-83.3 300-66.7S1100 433 1150 450l50 16.7V800H0z"/></svg>');*/
+          url('picture/r18.jpg');
+          /*url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23435a6b" width="1200" height="800"/><path fill="%23596975" d="M0 400l50-16.7C100 367 200 333 300 350s200 83 300 66.7c100-16.7 200-83.3 300-66.7S1100 433 1150 450l50 16.7V800H0z"/></svg>');*/
         background-size: cover;
         background-position: center;
         height: 100vh;
@@ -846,7 +846,7 @@
                 </div>
               </div>
               <div class="product-price">Rp 225.000.000</div>
-              <a href="detail-r15.html" class="btn-detail">Detail</a>
+              <a href="#" class="btn-detail">Detail</a>
             </div>
           </div>
 
@@ -880,7 +880,7 @@
                 </div>
               </div>
               <div class="product-price">Rp 336.000.000</div>
-              <a href="detail-r18.html" class="btn-detail">Detail</a>
+              <a href="#" class="btn-detail">Detail</a>
             </div>
           </div>
 
@@ -914,7 +914,7 @@
                 </div>
               </div>
               <div class="product-price">Rp 392.000.000</div>
-              <a href="detail-r22.html" class="btn-detail">Detail</a>
+              <a href="#" class="btn-detail">Detail</a>
             </div>
           </div>
         </div>
@@ -1009,8 +1009,7 @@
             <p><i class="fas fa-phone-alt"></i> +62 813-7441-0001</p>
             <p><i class="fas fa-envelope"></i> kagumiagroteknologi@gmail.com</p>
             <p>
-              <i class="fas fa-map-marker-alt"></i> Jl. Air Hitam, Pekanbaru,
-              Riau
+              <i class="fas fa-map-marker-alt"></i> Jl. Air Hitam, Pekanbaru, Riau
             </p>
           </div>
         </div>
@@ -1077,17 +1076,17 @@
       });
 
       // Form Submission
-      const contact = document.getElementById("contact");
+      const contactForm = document.getElementById("contactForm");
       const loading = document.getElementById("loading");
 
-      contact.addEventListener("submit", function (e) {
+      contactForm.addEventListener("submit", function (e) {
         e.preventDefault();
 
         // Show loading
         loading.classList.add("show");
 
         // Get form data
-        const formData = new FormData(contact);
+        const formData = new FormData(contactForm);
         const data = Object.fromEntries(formData);
 
         // Simulate form submission
@@ -1096,7 +1095,7 @@
           alert(
             "Terima kasih! Pesan Anda telah dikirim. Tim kami akan menghubungi Anda segera."
           );
-          contact.reset();
+          contactForm.reset();
         }, 2000);
       });
 
@@ -1191,40 +1190,16 @@
       }
 
       // Add WhatsApp buttons to product cards
-      // document.querySelectorAll(".btn-detail").forEach((button, index) => {
-      //   const productTitle = button
-      //     .closest(".product-card")
-      //     .querySelector(".product-title").textContent;
-      //   button.addEventListener("click", function (e) {
-      //     e.preventDefault();
-      //     openWhatsApp(
-      //       `Saya tertarik dengan produk ${productTitle}. Mohon informasi detail dan harga terbaru.`
-      //     );
-      //   });
-      // });
-
-      // Form Submission - Kirim ke WhatsApp
-      const contactForm = document.getElementById("contactForm");
-      contactForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const nama = document.getElementById("nama").value;
-        const email = document.getElementById("email").value;
-        const pesan = document.getElementById("pesan").value;
-        const phone = "6282288159186"; // Nomor WA tujuan
-
-        // Format pesan
-        const text = `Halo, saya ingin bertanya:%0ANama: ${nama}%0AEmail: ${email}%0APesan: ${pesan}`;
-
-        // Buka WhatsApp (mobile/app/desktop)
-        window.open(`https://wa.me/${phone}?text=${text}`, "_blank");
-
-        // Tampilkan pop-up sukses
-        setTimeout(() => {
-          alert(
-            "Pesan Anda berhasil diarahkan ke WhatsApp admin. Silakan lanjutkan pengiriman di WhatsApp."
+      document.querySelectorAll(".btn-detail").forEach((button, index) => {
+        const productTitle = button
+          .closest(".product-card")
+          .querySelector(".product-title").textContent;
+        button.addEventListener("click", function (e) {
+          e.preventDefault();
+          openWhatsApp(
+            `Saya tertarik dengan produk ${productTitle}. Mohon informasi detail dan harga terbaru.`
           );
-          contactForm.reset();
-        }, 500);
+        });
       });
 
       // Image lazy loading simulation
